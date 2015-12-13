@@ -120,16 +120,22 @@ __END__
 
 =head1 NAME
 
-Workman::Queue::Qudo - queue manager for Workman
+Workman::Queue::Qudo - Qudo's queue manager for Workman
 
 =head1 SYNOPSIS
 
     use Workman::Queue::Qudo;
-    my $queue = Workman::Queue::Qudo->new(connect_info => [
-        'dbi:mysql:dbname=mydb',
-        $username,
-        $password
-    ]);
+    my $qudo = Qudo->new(
+        databases => [
+            {
+                dsn      => 'dbi:SQLite:dbname=:memory:',
+                username => '',
+                password => '',
+            }
+        ],
+        default_hooks => [qw/Qudo::Hook::Serialize::JSON/],
+    );
+    my $queue = Workman::Queue::Qudo->new(qudo => $qudo);
     my $profile = Workman::Server::Profile->new(max_workers => 10, queue => $queue);
     $profile->set_task_loader(sub {
         my $set = shift;

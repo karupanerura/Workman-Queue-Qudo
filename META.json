@@ -1,10 +1,10 @@
 {
-   "abstract" : "queue manager for Workman",
+   "abstract" : "Qudo's queue manager for Workman",
    "author" : [
       "karupanerura <karupa@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v2.1.1, CPAN::Meta::Converter version 2.142060",
+   "generated_by" : "Minilla/v3.0.1, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "perl_5"
    ],
@@ -62,6 +62,18 @@
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/karupanerura/Workman-Queue-Qudo/issues"
+      },
+      "homepage" : "https://github.com/karupanerura/Workman-Queue-Qudo",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/karupanerura/Workman-Queue-Qudo.git",
+         "web" : "https://github.com/karupanerura/Workman-Queue-Qudo"
+      }
+   },
    "version" : "0.01",
-   "x_authority" : "cpan:KARUPA"
+   "x_authority" : "cpan:KARUPA",
+   "x_serialization_backend" : "JSON::PP version 2.27300"
 }
