@@ -19,12 +19,17 @@ sub register_tasks {
     my @abilities = $task_set->get_all_task_names;
     $self->qudo->{manager_abilities} = \@abilities;
     $self->qudo->manager->register_abilities(@abilities);
+
+    my $wrapped = 0;
     for my $db ($self->qudo->shuffled_databases) {
-        my $driver  = $self->qudo->get_connection($db);
+        my $driver = $self->qudo->get_connection($db);
+        next if $driver->isa('Qudo::Driver::Workman');
+
         my $wrapper = Qudo::Driver::Workman->new($driver, $task_set);
         $self->qudo->set_connection($db, $wrapper);
+        $wrapped++;
     }
-    delete $self->qudo->manager->{_func_cache}; # XXX: reset func cache
+    delete $self->qudo->manager->{_func_cache} if $wrapped; # XXX: reset func cache
 }
 
 sub enqueue {
