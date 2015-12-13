@@ -63,7 +63,7 @@ sub dequeue {
     }
 
     return Workman::Job->new(
-        name    => $job->funcname,
+        name    => ''.$job->funcname, # XXX: stringify
         args    => $job->arg,
         on_done => sub {
             my $result = shift;
