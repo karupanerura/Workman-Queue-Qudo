@@ -69,12 +69,8 @@ sub dequeue {
             my $result = shift;
             warn "[$$] Qudo hasn't support to send result." if defined $result;
 
-            if ($job->is_aborted) {
-                $job->dequeue;
-            }
-            else {
-                $job->completed;
-            }
+            $job->completed unless $job->is_aborted;
+            $job->dequeue;
 
             $self->qudo->manager->call_hook('post_work', $job);
         },
